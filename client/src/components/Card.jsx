@@ -1,10 +1,8 @@
 import styled from 'styled-components';
-import videoTest from '../img/pexels-eberhard-grossgasteiger-2310713.jpg';
-import avatar from '../img/FB_IMG_1617646095508.jpg';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-// import { format } from 'timeago.js';
+import { format } from 'timeago.js';
 
 const Container = styled.div`
     width: ${(props) => props.type !== 'sm' && '360px'};
@@ -12,6 +10,10 @@ const Container = styled.div`
     cursor: pointer;
     display: ${(props) => props.type === 'sm' && 'flex'};
     gap: 10px;
+
+    & > img {
+        width: ${(props) => props.type === 'sm' && '50% !important'};
+    }
 `;
 
 const Image = styled.img`
@@ -69,14 +71,14 @@ const Card = ({ type, video }) => {
     return (
         <Link to={`/video/${video._id}`} style={{ textDecoration: 'none' }}>
             <Container type={type}>
-                <Image type={type} src={video.imgUrl || videoTest} />
+                <Image type={type} src={video.imgUrl} />
                 <Details type={type}>
-                    <ChannelImage type={type} src={channel.img || avatar} />
+                    <ChannelImage type={type} src={channel.img} />
                     <Texts>
                         <Title>{video.title}</Title>
                         <ChannelName>{channel.name}</ChannelName>
                         <Info>
-                            {video.views} views - {video.createdAt}
+                            {video.views} views - {format(video.createdAt)}
                         </Info>
                     </Texts>
                 </Details>
