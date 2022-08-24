@@ -1,36 +1,28 @@
-import express from 'express';
-import {
-    update,
-    deleteUser,
-    getUser,
-    subscribe,
-    unsubscribe,
-    like,
-    dislike,
-} from '../controllers/user.js';
-import { verifyToken } from '../verifyToken.js';
+const express = require('express');
+const userCtrl = require('../controllers/user');
+const { verifyToken } = require('../verifyToken');
 
 const router = express.Router();
 
 //update user
-router.put('/:id', verifyToken, update);
+router.put('/:id', verifyToken, userCtrl.update);
 
 //delete user
-router.delete('/:id', verifyToken, deleteUser);
+router.delete('/:id', verifyToken, userCtrl.deleteUser);
 
 //get a user
-router.get('/find/:id', getUser);
+router.get('/find/:id', userCtrl.getUser);
 
 //subscribe a user
-router.put('/sub/:id', verifyToken, subscribe);
+router.put('/sub/:id', verifyToken, userCtrl.subscribe);
 
 //unsubscribe a user
-router.put('/unsub/:id', verifyToken, unsubscribe);
+router.put('/unsub/:id', verifyToken, userCtrl.unsubscribe);
 
 //like a video
-router.put('/like/:videoId', verifyToken, like);
+router.put('/like/:videoId', verifyToken, userCtrl.like);
 
 //dislike a video
-router.put('/dislike/:videoId', verifyToken, dislike);
+router.put('/dislike/:videoId', verifyToken, userCtrl.dislike);
 
-export default router;
+module.exports = router;

@@ -1,39 +1,28 @@
-import express from 'express';
-import {
-    addVideo,
-    addView,
-    deleteVideo,
-    getVideo,
-    random,
-    sub,
-    trend,
-    updateVideo,
-    getByTag,
-    search,
-} from '../controllers/video.js';
-import { verifyToken } from '../verifyToken.js';
+const express = require('express');
+const videoCtrl = require('../controllers/video');
+const { verifyToken } = require('../verifyToken');
 
 const router = express.Router();
 
 //create a video
-router.post('/', verifyToken, addVideo);
+router.post('/', verifyToken, videoCtrl.addVideo);
 
-router.put('/:id', verifyToken, updateVideo);
+router.put('/:id', verifyToken, videoCtrl.updateVideo);
 
-router.delete('/:id', verifyToken, deleteVideo);
+router.delete('/:id', verifyToken, videoCtrl.deleteVideo);
 
-router.get('/find/:id', getVideo);
+router.get('/find/:id', videoCtrl.getVideo);
 
-router.put('/view/:id', addView);
+router.put('/view/:id', videoCtrl.addView);
 
-router.get('/trend', trend);
+router.get('/trend', videoCtrl.trend);
 
-router.get('/random', random);
+router.get('/random', videoCtrl.random);
 
-router.get('/sub', verifyToken, sub);
+router.get('/sub', verifyToken, videoCtrl.sub);
 
-router.get('/tags', getByTag);
+router.get('/tags', videoCtrl.getByTag);
 
-router.get('/search', search);
+router.get('/search', videoCtrl.search);
 
-export default router;
+module.exports = router;

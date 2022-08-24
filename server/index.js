@@ -1,11 +1,11 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-import userRoutes from './routes/users.js';
-import videoRoutes from './routes/videos.js';
-import commentRoutes from './routes/comments.js';
-import authRoutes from './routes/auth.js';
-import cookieParser from 'cookie-parser';
+const express = require('express');
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+const userRoutes = require('./routes/users');
+const videoRoutes = require('./routes/videos');
+const commentRoutes = require('./routes/comments');
+const authRoutes = require('./routes/auth');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 dotenv.config();
